@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/python,macos,visualstudiocode,django
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,macos,visualstudiocode,django
+# Created by https://www.toptal.com/developers/gitignore/api/django,dotenv,python,macos,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,dotenv,python,macos,visualstudiocode
 
 ### Django ###
 *.log
@@ -171,6 +171,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+### dotenv ###
+
 ### macOS ###
 # General
 .DS_Store
@@ -312,4 +314,4 @@ poetry.toml
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/python,macos,visualstudiocode,django
+# End of https://www.toptal.com/developers/gitignore/api/django,dotenv,python,macos,visualstudiocode
