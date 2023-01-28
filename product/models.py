@@ -8,7 +8,7 @@ class ProductModel(models.Model):
     price   = models.PositiveIntegerField(verbose_name="가격")
     sale    = models.PositiveIntegerField(verbose_name="할인 가격") # 2000을 1900에 팔려면 이 값이 100
     stock   = models.PositiveIntegerField(verbose_name="재고")
-    images  = models.ForeignKey(ProductImg, on_delete=models.CASCADE, related_name="image", verbose_name="제품 사진")
+    images  = models.ForeignKey(ProductImg, on_delete=models.CASCADE, verbose_name="제품 사진")
     post    = models.TextField(verbose_name="글")
     created = models.DateField(verbose_name="생성날짜")
 
