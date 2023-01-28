@@ -3,6 +3,11 @@ from django.db import models
 class ProductImg(models.Model):
     image   = models.ImageField(upload_to="product")
 
+    class Meta:
+        db_table            = "productImage"
+        verbose_name        = "제품 이미지"
+        verbose_name_plural = verbose_name
+
 class ProductModel(models.Model):
     name    = models.CharField(verbose_name="제품명", max_length=100)
     price   = models.PositiveIntegerField(verbose_name="가격")
@@ -16,6 +21,6 @@ class ProductModel(models.Model):
         return self.name 
 
     class Meta:
-        db_table = "product"
-        verbose_name = "제품"
-        verbose_name_plural = "상품"
+        db_table            = "product"
+        verbose_name        = "제품"
+        verbose_name_plural = verbose_name
