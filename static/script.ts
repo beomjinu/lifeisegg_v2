@@ -1,5 +1,3 @@
-let quantity: number = 1;
-
 function ConvertNumber(num: number) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -86,4 +84,5 @@ function setCartQuantity() {
     }
 }
 
+let quantity: number = 1;
 setCartQuantity()

@@ -1,4 +1,3 @@
-var quantity = 1;
 function ConvertNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -70,4 +69,5 @@ function setCartQuantity() {
         document.getElementById("cartQuantity").innerText = "(" + cart.split(",").length + ")";
     }
 }
+var quantity = 1;
 setCartQuantity();

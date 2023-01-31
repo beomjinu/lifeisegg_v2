@@ -3,4 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return render(request, "cart/cart.html")
+    context = {
+        "title": "장바구니"
+    }
+    return render(request, "cart/cart.html", context)
