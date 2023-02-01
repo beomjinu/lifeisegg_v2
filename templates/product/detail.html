@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="w-4/5 mx-auto flex max-w-4xl">
-    <div class="w-1/2">
-        <div class="w-96 h-96 mx-auto">
+<div class="md:w-4/5 mx-auto flex flex-col md:flex-row max-w-4xl">
+    <div class="md:w-1/2">
+        <div class="w-80 h-80 md:w-96 md:h-96 mx-auto">
             <img id="bigImage"class="w-full h-full" src="{{ product.mainImage.url }}">
-            <div class="flex gap-2 w-full mt-2">
+            <div class="flex gap-0.5 md:gap-2 w-full mt-2">
                 {% for productImage in product.imageList %}
-                    <img class="w-[5.625rem] cursor-pointer" src="{{ productImage.url }}" onclick="changeBigImage(this)">
+                    <img class="w-[4.625rem] md:w-[5.625rem] cursor-pointer" src="{{ productImage.url }}" onclick="changeBigImage(this)">
                 {% endfor %}
             </div>
         </div>
     </div>
-    <div class="w-1/2">
-        <div class="w-4/5 mx-auto h-full max-w-sm">
+    <div class="md:w-1/2">
+        <div class="md:w-4/5 w-80 mx-auto h-full max-w-sm mt-40 md:mt-0">
             <p class="text-3xl">{{ product.name }}</p>
             <div class="flex text-2xl gap-2 mt-8">
                 <p id="resultPrice" class="text-blue-700">{{ product.resultPrice }}원</p>
@@ -24,10 +24,11 @@
                 {% endif %}
             </div>
             <p class="mt-4 text-gray-500 w-80">
-                배송비:  2,500원 (50,000원 이상 구매 시 무료) 제주 3,000원, 제주 외 도서 산간 3,500원 추가
+                배송비:  2,500원 (50,000원 이상 구매 시 무료 제주 3,000원 제주 외 도서 산간 3,500원 추가)
             </p>
             <div class="SpoqaHanSans text-sm mt-12">
                 <p>수량</p>
+                {% if product.stock != 0 %}
                 <div class="flex justify-between w-24 h-8 border-y border-y-black">
                     <div class="text-lg w-8 h-8 leading-8 text-center border-x border-x-black select-none cursor-pointer" onclick="counter(+1, '{{ product.stock }}', '{{ product.price }}', '{{ product.sale }}')">
                         +
@@ -39,19 +40,37 @@
                         -
                     </div>
                 </div>
+                {% else %}
+                <div class="flex justify-between w-24 h-8 border-y border-y-black">
+                    <div class="text-lg w-8 h-8 leading-8 text-center border-x border-x-black select-none cursor-pointer">
+                        +
+                    </div>
+                    <div class="text-sm w-8 h-8 leading-8 text-center">
+                        0
+                    </div>
+                    <div class="text-lg w-8 h-8 leading-8 text-center border-x border-x-black select-none cursor-pointer">
+                        -
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            <div class="flex justify-between mt-40">
+            {% if product.stock != 0 %}
+            <div class="flex justify-between mt-12 md:mt-40">
                 <button class="w-[49%] border border-blue-700 rounded-full h-12 text-white bg-blue-700">
                     구매하기
                 </button>
-                <button class="w-[49%] 5/12 border border-blue-700 rounded-full h-12 text-blue-700 hover:bg-blue-700 hover:text-white duration-500" onclick="addCart('{{ product.id }}', target=this)">
+                <button class="w-[49%] border border-blue-700 rounded-full h-12 text-blue-700 hover:bg-blue-700 hover:text-white duration-500" onclick="addCart('{{ product.id }}', target=this)">
                     장바구니
                 </button>
             </div>
+            {% else %}
+            <button class="w-full bg-gray-500 rounded-full h-12 text-white mt-12 md:mt-40 text-xl">품절된 상품입니다.</button>
+            {% endif %}
         </div>
     </div>
 </div>
-<div class="w-2/3 mx-auto mt-20">
-    {{ product.post|safe }}
+<div class="w-80 md:w-96 md:w-2/3 mx-auto mt-20 text-xl"> 
+    {{ product.post|safe }} 
 </div>
-{% endblock %}
+<script src="{% static 'product/detail.js' %}"></script>
+{% endblock %} 
